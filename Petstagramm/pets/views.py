@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.views.generic import ListView
 
 from Petstagramm.pets.forms import PetForm
 from Petstagramm.pets.models import Pet, Like
@@ -9,7 +10,12 @@ def list_pets(req):
         'pets': Pet.objects.all(),
     }
 
-    return render(req, 'pet_list.html', context)
+    return render(req, 'pets/pet_list.html', context)
+
+class ListPetView(ListView):
+    template_name = 'pets/pet_list.html'
+    model = Pet
+    context_object_name = 'pets'
 
 def pet_details(req, pk):
     pet = Pet.objects.get(pk=pk)
@@ -19,7 +25,7 @@ def pet_details(req, pk):
         'pet': pet,
     }
 
-    return render( req, 'pet_detail.html', context )
+    return render(req, 'pets/pet_detail.html', context)
 
 def like_pet(req, pk):
     pet_to_like = Pet.objects.get(pk=pk)
@@ -44,7 +50,7 @@ def create_pet(req):
             'form': form,
         }
 
-        return render(req, 'pet_create.html', context)
+        return render(req, 'pets/pet_create.html', context)
 
 def edit_pet(req, pk):
     pet = Pet.objects.get(pk=pk)
@@ -60,4 +66,4 @@ def edit_pet(req, pk):
             'form': form,
         }
 
-        return render(req, 'pet_create.html', context)
+        return render(req, 'pets/pet_create.html', context)

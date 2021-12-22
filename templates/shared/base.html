@@ -11,7 +11,7 @@
         integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 </head>
 
-<body>
+<div>
     <nav class="navbar navbar-expand-lg navbar-light bg-light" style="margin-bottom:2%">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
             aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -32,23 +32,11 @@
         </div>
     </nav>
     <div class="container">
-        <h1 class='text-center'>All pet photos</h1>
-        <div class="row">
-            {% for pet in pets %}
-            <div class="col-lg-4">
-                <div class="card" style="width: 18rem;">
-                    <img src="{{ pet.image_url }}" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ pet.type }}, {{ pet.name }}, {{ pet.age }}</h5>
-                        <p class="card-text">{{ pet.description }}</p>
-                        <a href="{% url 'pet details' pet.id %}" class="btn btn-primary">See details</a>
-                    </div>
-                </div>
-            {% endfor %}
-            </div>
-        </div>
-    </div>
-</body>
+{% block content %}
+        {% endblock%}
+
+</div>
+
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
     integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
     crossorigin="anonymous"></script>
